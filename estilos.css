@@ -1,0 +1,94 @@
+body{
+    font-family: sans-serif;
+background-color:aquamarine;
+}
+.imagenes-container{
+    /* margin:100px auto; */   /*ESTOS MARGENES SE DESACTIVO YA QUE NO NOS PERMITEN POSICIONARLOS EN MEDIO*/
+    /* width: 500px; */     /*ESTOS MARGENES SE DESACTIVO YA QUE NO NOS PERMITEN POSICIONARLOS EN MEDIO Y TAMBIEN SE QUITARA EL ANCHO AUTOMATICO QUE EN EL SAO DE ESTA LINEA SE QUITO EL ANCHO AUTOMATICO*/
+    display: flex;
+    justify-content: center;
+    /* align-items:baseline; */
+    align-items: center;
+    height: 100vh; /*las unidades vh son un truco para poder centrar lementos*/
+}
+.imagenes-container.imagen{
+    position: relative;
+    margin-right: -20px;
+    display:inline-flex;
+    flex-direction:column;
+}
+.imagenes-container .imagen img{
+    /* AQUI VA SEPARADA LA CLASE DE LA PALABRA IMAGEN PARA HACER QUE LA IMAGEN SE VUELVA MINIATURA Y ESTE EN COMLÑUMNAS DEACUERDO A LOS FORMATOS QUE TRABAJA FLEXBOX */
+    /* NOTA:REPASR TODO SOBRE FLEXBOX */
+    width:150px;
+    height:150px;
+    transition: transform 0.32s ease-in-out; /*al  momento de poner los dos punto en trasition se cometio un error de sintaxis se asignaron dos punto y eso provoco que la biñeta con el nombre de cada pokemon no se observara desde abajo solo se veia arriba*/
+}
+/* HOY EN DIA SE ESTA USANDO EL FLEXBOX ESTA DE MODA */
+/* EN FLEXBOX DE IZQUIERDA A DERECHA COLUMNAS , DE ARRIBA HACIA A ABAJO FILAS */
+/*.imagenes-container .imagen img{
+    width: 50px;
+    height: 50px;
+} */
+.imagenes-container .imagen .nombre{
+   /* aqui nos estamos encontrando asignadoles estilos al nombre de un pokemon */ 
+    position: adsolute;
+    background-color:black;
+    border-radius: 5px;
+    color:white;
+    display: none;
+    min-width: 100px;
+    width: 150px;
+    top: -70px;
+    /* EL top solo representa la posicion del elemento donde se va ubicar mientras que el margin-top es un margin con posicion hacia arriba */
+    /* margin-top: -55px; */
+    /*left: calc(-50% - 30px);*/  /* AQUI APLICAMOS UN CALCULO EN CSS */
+    
+    padding: 10px 15px;
+}
+/* NOTA: LOS TEXTOS OVERFLOW CUANDO LOS TEXTOS SON MUY GRANDES Y NO CABEN DENTRO DE UN ESPACIO ESPECIFICO Y LO PONE EN LETRAS CLAVE DE LA PALABRA Y SI ES MUY GRANDE LO PONE EN PUNTITOS LO QUE FALTA PARA IDENTIFICAR LA PALABRA DENTRO DEL CONTENEDOR */
+.imagenes-container .imagen .nombre .text{
+    display:inline-block;/*aqui hubo un error con inline ya que se puso la palabra indice y era inline en esta linea*/
+    text-overflow:ellipsis;/*En esta linea se volvio a tener un error de sintaxis ya que ellipsis lleva doble ll*/
+    /* cuando hay desbordamento hay que ocultar alhunos caracteres de textos-letras */
+    overflow:hidden; /*overflow es el desbordamiento cuando yano alcanza espacio dentro deuna caja *//*TAMBIEN SE COMETIO OTRO ERROR AL ESCRIBIR hidden como hirer eso proco que no estubiera bien el espaciado dentro de las cajas*/
+    white-space: nowrap; /*white-space:nowrap se utilizo para hacer espaciados en blanco*/
+    margin: 0 auto; 
+    width:  150px;
+    /*AHORA AREMOS ANIDAMIENTO DE TEXTO*/
+    text-align: center; /*    text-align: center;alinia de izquierda a derecha el texto*/
+    box-sizing: border-box;/*hace automaticamente los tamaños de las cajitas donde se encuentra el texto y las imagenes de los pokemon*/
+
+}
+/* AQUI ESTAMOS USANDO HOVER PARA QUE CUANDO PASE EL MOUSE SOBRE LA IMAGEN SE RELEJE SU NOMBRE DE CADA POKEMON */
+.imagenes-container .imagen:hover .nombre{
+    /* display: flex; */
+    display: inline-block;
+    transform: translateY(-20px) /*esta funcion de calculo en css no lleva punto y coma*//*aqui hicimos el desplazamiento en y aun nos falta  centrarlo de izquierda a derecha en x */ /*Se cometio un error en translate no se asigno la orientacion y y despues se corrigio*/
+}
+ /* EN ESTE PROYECTO Y EN ESTE CODIGO LE DIMOS ESTILOS A LOS CONTENEDORES */
+.imagenes-container .imagen .nombre::before { /*Aqui estamos añadiendo seudo elementos y con el uso de dos punto añadimos el segundo seudo elemneto ,primer punto primer seudo elemnto,segundo punto segundo seudo elemento*/
+    content:"";
+    position: adsolute;
+    width: 1px;
+    height: 1px;
+    left: 40%;
+    bottom: -20px;
+    /*background-color:blue ;*/
+    /*ESTE background-color SE UTILIZO COMO EJEMPLO PARA MOSTRAR EL TEXTO SOMBRA EN BIÑETA SOLO EJEMPLIFICO PARA RESALTAR Y PODER IDENTIFICAR EL TRIANGULITO*/
+    border-top: 10px solid black;
+    border-left:10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom:10px solid transparent ;/*EN ESTA LINEA DE CODIGO EN border-bottom:10px solid transparent se identifico que habia un error de sintaxis en transparent*/
+ }
+ /* vamos acrear un efecto en el contenedor inmediato que es div en el cual esta la imagen */
+.imagenes-container .imagen:hover img{
+transform: translateY(-20px);
+ }
+@media(max-width: 680px){
+    .imagenes-container{
+        flex-direction: column;
+        height: 180vh;
+        /*las unidades vh utilizan parte de la pantalla en su espacio y si se les asigna una medida  de 100 en adelante  tomaran toda la pantalla como su espacio*/
+    }
+}
